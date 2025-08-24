@@ -1,6 +1,5 @@
 namespace WebApi.Models;
 
-// This is the join entity for the many-to-many relationship between TodoItem and Tag
 public class TodoItemTag
 {
     public Guid TodoItemId { get; set; }
