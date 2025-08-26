@@ -2,4 +2,8 @@
 todo-web-api-base-demo
 
 # Database
+- Model: Code First
 - PostgreSQL
+- EF Core
+
+# Packages
