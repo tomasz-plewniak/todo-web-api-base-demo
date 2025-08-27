@@ -1,16 +1,24 @@
 using Microsoft.AspNetCore.Mvc;
 using WebApi.Models;
+using WebApi.Services;
 
 namespace WebApi.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class TodosController : ControllerBase
+public class TodoItemsController : ControllerBase
 {
+    private readonly ITodoItemService _todoItemService;
+
+    public TodoItemsController(ITodoItemService todoItemService)
+    {
+        _todoItemService = todoItemService;
+    }
+    
     [HttpGet]
     public async Task<IActionResult>  GetTodoItemsAsync()
     {
-        throw new NotImplementedException();
+        return Ok(await _todoItemService.GetTodoItemsAsync());
     }
 
     [HttpGet("{id}")]

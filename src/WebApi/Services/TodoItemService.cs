@@ -1,17 +1,26 @@
-﻿using WebApi.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using WebApi.Data;
+using WebApi.Models;
 
 namespace WebApi.Services;
 
 public class TodoItemService : ITodoItemService
 {
-    public Task<IEnumerable<TodoItem>> GetTodoItemsAsync()
+    private readonly AppDbContext _context;
+
+    public TodoItemService(AppDbContext context)
     {
-        throw new NotImplementedException();
+        _context = context;
+    }
+    
+    public async Task<IEnumerable<TodoItem>> GetTodoItemsAsync()
+    {
+        return await _context.TodoItems.ToListAsync();
     }
 
-    public Task<TodoItem?> GetTodoItemAsync(Guid id)
+    public async Task<TodoItem?> GetTodoItemAsync(Guid id)
     {
-        throw new NotImplementedException();
+        return await _context.TodoItems.SingleOrDefaultAsync(t => t.Id == id);
     }
 
     public Task<TodoItem> CreateTodoItemAsync(CreateTodoItem createTodoItem)
