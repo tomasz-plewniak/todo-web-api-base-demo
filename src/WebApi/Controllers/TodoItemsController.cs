@@ -24,7 +24,14 @@ public class TodoItemsController : ControllerBase
     [HttpGet("{id}")]
     public async Task<IActionResult> GetTodoItemAsync(Guid id)
     {
-        throw new NotImplementedException();
+        TodoItem? todoItem = await _todoItemService.GetTodoItemAsync(id);
+        
+        if (todoItem == null)
+        {
+            return NotFound();
+        }
+        
+        return Ok(todoItem);
     }
 
     [HttpPost]

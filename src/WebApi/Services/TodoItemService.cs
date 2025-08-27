@@ -33,8 +33,16 @@ public class TodoItemService : ITodoItemService
         throw new NotImplementedException();
     }
 
-    public Task DeleteTodoItemAsync(Guid id)
+    public async Task DeleteTodoItemAsync(Guid id)
     {
-        throw new NotImplementedException();
+        TodoItem? todoItem = await _context.TodoItems.SingleOrDefaultAsync(t => t.Id == id);
+
+        if (todoItem == null)
+        {
+            return;
+        }
+        
+        _context.TodoItems.Remove(todoItem);
+        await _context.SaveChangesAsync();
     }
 }
