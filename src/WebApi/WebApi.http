@@ -1,6 +1,6 @@
-@WebApi_HostAddress = http://localhost:5122
+@WebApi_HostAddress = https://localhost:7270
 
-GET {{WebApi_HostAddress}}/weatherforecast/
+GET {{WebApi_HostAddress}}/TodoItems/
 Accept: application/json
 
 ###
