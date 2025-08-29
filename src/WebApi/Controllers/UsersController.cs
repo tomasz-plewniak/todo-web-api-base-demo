@@ -23,11 +23,9 @@ public class UsersController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<IActionResult> CreateUserAsync(
-        // Add here create.
-        )
+    public async Task<IActionResult> CreateUserAsync([FromBody] CreateUser createUser)
     {
-        throw new NotImplementedException();
+        throw new NotImplementedException(); 
     }
 
     [HttpPatch("{id}")]
