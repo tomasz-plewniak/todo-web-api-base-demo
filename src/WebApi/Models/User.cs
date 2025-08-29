@@ -2,6 +2,15 @@ namespace WebApi.Models;
 
 public class User
 {
+    public User(
+        string userName,
+        string email)
+    {
+        UserName = userName;
+        Email = email;
+        CreatedAt = DateTime.UtcNow;
+    }
+    
     public Guid Id { get; set; }
     
     public required string UserName { get; set; }
