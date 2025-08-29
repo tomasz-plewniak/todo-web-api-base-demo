@@ -1,0 +1,12 @@
+using WebApi.Models;
+
+namespace WebApi.Services;
+
+public interface IUserService
+{
+    Task<IEnumerable<User>> GetUsersAsync(CancellationToken cancellationToken = default);
+    
+    Task<User?> GetUserAsync(Guid id, CancellationToken cancellationToken = default);
+    
+    Task<User> CreateUserAsync(CreateUser createUser);
+}
