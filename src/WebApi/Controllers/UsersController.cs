@@ -45,7 +45,14 @@ public class UsersController(IUserService userService) : ControllerBase
     [ProducesResponseType(StatusCodes.Status409Conflict)]
     public async Task<IActionResult> CreateUserAsync([FromBody] CreateUser createUser)
     {
+        if (!ModelState.IsValid)
+        {
+            return BadRequest(ModelState);
+        }
+        
         User user = await userService.CreateUserAsync(createUser);
+        
+        
         
         return CreatedAtAction(nameof(GetUserAsync), new {id = user.Id}, user);   
     }
