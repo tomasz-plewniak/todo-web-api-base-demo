@@ -1,8 +1,20 @@
-@WebApi_HostAddress = https://localhost:7270
-
-GET {{WebApi_HostAddress}}/api/todo-items
+GET {{webApiHostAddress}}/api/todo-items
 Accept: application/json
 
-###
+### Create new user
+# @name createUser
+POST {{webApiHostAddress}}/api/users
+Content-Type: application/json
 
-GET {{WebApi_HostAddress}}/api/users
+{
+  "userName": "{{$random.name.username}}",
+  "email": "{{$random.email}}"
+}
+
+> {%
+client.global.set("{{userId}}", response.body.id)
+%}
+
+### Get user by id (using the stored variable)
+GET {{webApiHostAddress}}/api/users/{{userId}}
+Content-Type: application/json
