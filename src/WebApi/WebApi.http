@@ -1,6 +1,8 @@
 @WebApi_HostAddress = https://localhost:7270
 
-GET {{WebApi_HostAddress}}/TodoItems/
+GET {{WebApi_HostAddress}}/api/todo-items
 Accept: application/json
 
 ###
+
+GET {{WebApi_HostAddress}}/api/users

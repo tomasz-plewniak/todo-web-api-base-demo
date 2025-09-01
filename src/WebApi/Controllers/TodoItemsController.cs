@@ -5,7 +5,7 @@ using WebApi.Services;
 namespace WebApi.Controllers;
 
 [ApiController]
-[Route("[controller]")]
+[Route("/api/todo-items")]
 public class TodoItemsController : ControllerBase
 {
     private readonly ITodoItemService _todoItemService;

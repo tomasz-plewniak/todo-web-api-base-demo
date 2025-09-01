@@ -7,7 +7,7 @@ namespace WebApi.Controllers;
 
 [ApiController]
 [ProducesResponseType<IEnumerable<User>>(StatusCodes.Status200OK)]
-[Route("[controller]")]
+[Route("api/users")]
 public class UsersController(IUserService userService) : ControllerBase
 {
     [HttpGet]
