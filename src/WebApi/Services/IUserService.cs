@@ -9,4 +9,6 @@ public interface IUserService
     Task<User?> GetUserAsync(Guid id, CancellationToken cancellationToken = default);
     
     Task<User> CreateUserAsync(CreateUser createUser);
+    
+    Task UpdateUserAsync(User updatedUser);
 }

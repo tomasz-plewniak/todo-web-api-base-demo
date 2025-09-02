@@ -60,11 +60,26 @@ public class UsersController(IUserService userService) : ControllerBase
     [HttpPatch("{id}")]
     [ActionName(nameof(UpdateUserAsync))]
     public async Task<IActionResult> UpdateUserAsync(
-        [FromRoute] Guid id
-        // Add here update model)
-        )
+        [FromRoute] Guid id,
+        [FromBody] UpdateUser updateUser)
     {
-        throw new NotImplementedException();   
+        if (!ModelState.IsValid)
+        {
+            return BadRequest(ModelState);
+        }
+        
+        User? user = await userService.GetUserAsync(id);
+        if (user == null)
+        {
+            return NotFound();
+        }
+        
+        user.UserName = updateUser.UserName;
+        user.Email = updateUser.Email;
+        
+        await userService.UpdateUserAsync(user);
+        
+        return Ok(user); 
     }
     
     [HttpDelete("{id}")]
