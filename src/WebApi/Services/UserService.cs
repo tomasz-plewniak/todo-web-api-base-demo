@@ -31,4 +31,10 @@ public class UserService : IUserService
         await _appDbContext.SaveChangesAsync();
         return user;
     }
+
+    public async Task UpdateUserAsync(User updatedUser)
+    {
+        _appDbContext.Users.Update(updatedUser);
+        await _appDbContext.SaveChangesAsync();
+    }
 }

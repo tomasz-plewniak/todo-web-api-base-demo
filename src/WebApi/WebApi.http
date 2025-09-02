@@ -12,9 +12,18 @@ Content-Type: application/json
 }
 
 > {%
-client.global.set("{{userId}}", response.body.id)
+client.global.set("userId", response.body.id)
 %}
 
-### Get user by id (using the stored variable)
+### Get user by id
 GET {{webApiHostAddress}}/api/users/{{userId}}
 Content-Type: application/json
+
+### Update user
+PATCH {{webApiHostAddress}}/api/users/{{userId}}
+Content-Type: application/json
+
+{
+  "userName": "domino",
+  "email": "domino@gmail.com"
+}
