@@ -86,6 +86,14 @@ public class UsersController(IUserService userService) : ControllerBase
     public async Task<IActionResult> DeleteUserAsync(
         [FromRoute] Guid id)
     {
-        throw new NotImplementedException();  
+        User? user = await userService.GetUserAsync(id);
+
+        if (user is null)
+        {
+            return NotFound();
+        }
+
+        await userService.DeleteUserAsync(user);
+        return NoContent();
     }
 }

@@ -37,4 +37,10 @@ public class UserService : IUserService
         _appDbContext.Users.Update(updatedUser);
         await _appDbContext.SaveChangesAsync();
     }
+
+    public async Task DeleteUserAsync(User user)
+    {
+        _appDbContext.Users.Remove(user);
+        await _appDbContext.SaveChangesAsync();
+    }
 }
