@@ -27,3 +27,7 @@ Content-Type: application/json
   "userName": "domino",
   "email": "domino@gmail.com"
 }
+
+### Delete user
+DELETE {{webApiHostAddress}}/api/users/{{userId}}
+Content-Type: application/json
