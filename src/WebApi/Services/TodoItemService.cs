@@ -23,9 +23,10 @@ public class TodoItemService : ITodoItemService
         return await _context.TodoItems.SingleOrDefaultAsync(t => t.Id == id);
     }
 
-    public Task<TodoItem> CreateTodoItemAsync(CreateTodoItem createTodoItem)
+    public async Task CreateTodoItemAsync(TodoItem todoItem)
     {
-        throw new NotImplementedException();
+        await _context.TodoItems.AddAsync(todoItem);
+        await _context.SaveChangesAsync();
     }
 
     public Task<TodoItem> UpdateTodoItemAsync(Guid id, UpdateTodoItem updateTodoItem)

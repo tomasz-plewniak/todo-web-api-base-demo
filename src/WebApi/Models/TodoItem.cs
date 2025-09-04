@@ -2,6 +2,11 @@ namespace WebApi.Models;
 
 public class TodoItem
 {
+    public TodoItem()
+    {
+        CreatedAt = DateTime.UtcNow;
+    }
+    
     public Guid Id { get; set; }
     
     public required string Title { get; set; }
