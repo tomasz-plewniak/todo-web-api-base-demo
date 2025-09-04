@@ -22,6 +22,9 @@ public class TodoItemsController : ControllerBase
     }
 
     [HttpGet("{id}")]
+    [ActionName(nameof(GetTodoItemAsync))]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> GetTodoItemAsync(Guid id)
     {
         TodoItem? todoItem = await _todoItemService.GetTodoItemAsync(id);
@@ -35,9 +38,26 @@ public class TodoItemsController : ControllerBase
     }
 
     [HttpPost]
+    [ActionName(nameof(CreateTodoItemAsync))]
+    [ProducesResponseType(StatusCodes.Status201Created)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> CreateTodoItemAsync(CreateTodoItem createTodoItem)
     {
-        throw new NotImplementedException();
+        TodoItem todoItem = new()
+        {
+            Title = createTodoItem.Title,
+            Description = createTodoItem.Description,
+            DueDate = createTodoItem.DueDate,
+            Priority = createTodoItem.Priority,
+            UserId = createTodoItem.UserId
+        };
+
+        await _todoItemService.CreateTodoItemAsync(todoItem);
+        
+        return CreatedAtAction(
+            nameof(GetTodoItemAsync),
+            new {id = todoItem.Id},
+            todoItem); 
     }
     
     [HttpPatch("{id}")]

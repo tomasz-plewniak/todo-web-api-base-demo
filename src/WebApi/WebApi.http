@@ -31,3 +31,14 @@ Content-Type: application/json
 ### Delete user
 DELETE {{webApiHostAddress}}/api/users/{{userId}}
 Content-Type: application/json
+
+### Create todo item
+### Update user
+POST {{webApiHostAddress}}/api/todo-items/
+Content-Type: application/json
+
+{
+  "title": "{{$random.lorem.sentence}}",
+  "description": "{{$random.lorem.paragraph}}",
+  "userId": "{{userId}}"
+}
