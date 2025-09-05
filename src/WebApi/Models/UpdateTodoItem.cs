@@ -6,4 +6,5 @@ public record UpdateTodoItem(
     [MaxLength(100)]
     string? Title,
     [MaxLength(1000)]
-    string? Description);
+    string? Description,
+    DateTime? DueDate);
