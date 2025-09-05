@@ -42,3 +42,16 @@ Content-Type: application/json
   "description": "{{$random.lorem.paragraph}}",
   "userId": "{{userId}}"
 }
+
+> {%
+    client.global.set("todoId", response.body.id)
+%}
+
+### Update todo item
+PATCH {{webApiHostAddress}}/api/todo-items/{{todoId}}
+Content-Type: application/json
+
+{
+  "title": "{{$random.lorem.sentence}}",
+  "description": "test"
+}
