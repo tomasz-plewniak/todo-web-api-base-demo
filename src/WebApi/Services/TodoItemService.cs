@@ -29,9 +29,30 @@ public class TodoItemService : ITodoItemService
         await _context.SaveChangesAsync();
     }
 
-    public Task<TodoItem> UpdateTodoItemAsync(Guid id, UpdateTodoItem updateTodoItem)
+    public async Task UpdateTodoItemAsync(UpdateTodoItem updateTodoItem, TodoItem todoItem)
     {
-        throw new NotImplementedException();
+        if (updateTodoItem.Title is not null)
+        {
+            todoItem.Title = updateTodoItem.Title;
+        }
+        
+        if (updateTodoItem.Description is not null)
+        {
+            todoItem.Description = updateTodoItem.Description;
+        }
+
+        if (updateTodoItem.DueDate is not null)
+        {
+            todoItem.DueDate = updateTodoItem.DueDate;
+        }
+
+        if (updateTodoItem.Priority is not null)
+        {
+            todoItem.Priority = updateTodoItem.Priority;
+        }
+
+        _context.TodoItems.Update(todoItem);
+        await _context.SaveChangesAsync();
     }
 
     public async Task DeleteTodoItemAsync(Guid id)
