@@ -10,7 +10,9 @@ public interface ITodoItemService
     
     public Task CreateTodoItemAsync(TodoItem todoItem);
     
-    public Task<TodoItem> UpdateTodoItemAsync(Guid id, UpdateTodoItem updateTodoItem);
+    public Task UpdateTodoItemAsync(
+        UpdateTodoItem updateTodoItem,
+        TodoItem todoItem);
     
     public Task DeleteTodoItemAsync(Guid id);
 }

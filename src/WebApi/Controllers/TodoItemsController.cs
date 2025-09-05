@@ -60,10 +60,21 @@ public class TodoItemsController : ControllerBase
             todoItem); 
     }
     
-    [HttpPatch("{id}")]
-    public async Task<IActionResult> UpdateTodoItemAsync(Guid id, UpdateTodoItem updateTodoItem)
-    {
-        throw new NotImplementedException();   
+    [HttpPatch("{id:guid}")]
+    public async Task<IActionResult> UpdateTodoItemAsync(
+        [FromRoute] Guid id,
+        [FromBody] UpdateTodoItem updateTodoItem)
+    { 
+        TodoItem? todoItem = await _todoItemService.GetTodoItemAsync(id);
+        
+        if (todoItem == null)
+        {
+            return NotFound();
+        }
+        
+        await _todoItemService.UpdateTodoItemAsync(updateTodoItem, todoItem);
+        
+        return Ok(todoItem);
     }
     
     [HttpDelete("{id}")]
