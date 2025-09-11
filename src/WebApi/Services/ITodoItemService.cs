@@ -14,5 +14,5 @@ public interface ITodoItemService
         UpdateTodoItem updateTodoItem,
         TodoItem todoItem);
     
-    public Task DeleteTodoItemAsync(Guid id);
+    public Task DeleteTodoItemAsync(TodoItem todoItem);
 }

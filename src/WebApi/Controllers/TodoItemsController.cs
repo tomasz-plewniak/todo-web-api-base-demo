@@ -78,8 +78,20 @@ public class TodoItemsController : ControllerBase
     }
     
     [HttpDelete("{id}")]
+    [ActionName(nameof(DeleteTodoItemAsync))]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> DeleteTodoItemAsync(Guid id)
     {
-        throw new NotImplementedException();  
+        TodoItem? todoItem = await _todoItemService.GetTodoItemAsync(id);
+        
+        if (todoItem == null)
+        {
+            return NotFound();
+        }
+        
+        await _todoItemService.DeleteTodoItemAsync(todoItem);
+        
+        return NoContent();
     }
 }

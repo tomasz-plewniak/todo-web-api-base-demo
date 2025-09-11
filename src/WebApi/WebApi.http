@@ -55,3 +55,7 @@ Content-Type: application/json
   "title": "{{$random.lorem.sentence}}",
   "description": "test"
 }
+
+### Delete todo item
+DELETE {{webApiHostAddress}}/api/todo-items/{{todoId}}
+Content-Type: application/json
