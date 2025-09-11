@@ -55,15 +55,8 @@ public class TodoItemService : ITodoItemService
         await _context.SaveChangesAsync();
     }
 
-    public async Task DeleteTodoItemAsync(Guid id)
+    public async Task DeleteTodoItemAsync(TodoItem todoItem)
     {
-        TodoItem? todoItem = await _context.TodoItems.SingleOrDefaultAsync(t => t.Id == id);
-
-        if (todoItem == null)
-        {
-            return;
-        }
-        
         _context.TodoItems.Remove(todoItem);
         await _context.SaveChangesAsync();
     }
